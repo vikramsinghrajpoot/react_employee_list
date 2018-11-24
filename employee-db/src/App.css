@@ -1,0 +1,84 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navigation {
+  height: 60px;
+  background-color: purple;
+  position: fixed;
+  margin: auto;
+  width: 100%;
+  top: 0px
+}
+
+.NavLink{
+  color: white;
+  margin-left: 20px;
+}
+
+.employee-form {
+  margin: auto;
+  box-sizing: border-box;
+  padding: 20px;
+  width: 80%;
+  height: 100%;
+  background-color: lightgray;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  margin-top: 70px
+}
+
+.employee-form-group{
+  padding-bottom: 15px;
+  display: block;
+}
+
+.employee-form label {
+  padding-right: 10px
+}
+
+.employee-form textarea,input[type = 'text']{
+  width: 70%;
+}
+
+.employee-table {
+  background-color: lightgrey;
+  width: 100%;
+}
+
+.employee-table tr:nth-child(even)		{ background-color:#fff; }
+
+.employee-table thead {
+  background-color:purple; 
+  color: white
+}
+
