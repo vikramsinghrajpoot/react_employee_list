@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  /* text-align: left;  */
+}
+
+.div{
+  box-sizing: border-box
 }
 
 .App-logo {
@@ -49,8 +53,7 @@
   margin: auto;
   box-sizing: border-box;
   padding: 20px;
-  width: 80%;
-  height: 100%;
+  width: 30%;
   background-color: lightgray;
   border-radius: 10px;
   margin-bottom: 5px;
@@ -58,7 +61,7 @@
 }
 
 .employee-form-group{
-  padding-bottom: 15px;
+  padding-bottom: 10px;
   display: block;
 }
 
@@ -67,12 +70,13 @@
 }
 
 .employee-form textarea,input[type = 'text']{
-  width: 70%;
+  width: 100%;
 }
 
 .employee-table {
   background-color: lightgrey;
-  width: 100%;
+  width: 70%;
+  margin: auto
 }
 
 .employee-table tr:nth-child(even)		{ background-color:#fff; }
@@ -81,4 +85,29 @@
   background-color:purple; 
   color: white
 }
+
+.error{
+  font-size: 10px;
+  color: red;
+  position: relative;
+  text-align: left;
+  bottom: 5px
+}
+
+.form-element-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: left
+}
+
+.form-input{
+  margin-left: 0px;
+  width: 100%;
+}
+
+.form-title-label {
+  width: 57px;
+}
+
+
 

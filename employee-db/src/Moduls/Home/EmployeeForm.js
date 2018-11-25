@@ -16,20 +16,48 @@ class EmployeeForm extends Component{
                 skills: '',
                 id:0
             },
-            currentIndex:0
+            currentIndex:0,
+            isValidName:true,
+            isValidEmail:true
         }
         if(this.props.isEdit === true){
             this.state = {
-                employee:this.props.employee
+                employee:this.props.employee,
+                isValidName:true,
+            isValidEmail:true
             }
             
          }
        
     }
 
+    validateEmail(email) {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (reg.test(email) === false) {
+            this.setState({ isValidEmail: false })
+        }
+        else {
+            this.setState({ isValidEmail: true })
+        }
+    }
+
+    validateName(name){
+        console.log(name.length)
+       if(name.length<4){
+           this.setState({
+               isValidName:false
+           })
+       }else{
+        this.setState({
+            isValidName:true
+        })
+       }
+    }
+
     onValueChange(e) {
         switch (e.target.name) {
             case 'name':
+                this.validateName(e.target.value)
                 this.setState({
                     employee: {
                         ...this.state.employee,
@@ -39,6 +67,7 @@ class EmployeeForm extends Component{
                 break
 
             case 'email':
+            this.validateEmail(e.target.value)
                 this.setState({
                     employee: {
                         ...this.state.employee,
@@ -62,8 +91,8 @@ class EmployeeForm extends Component{
 
     submitPress(e, employee) {
         e.preventDefault()
-        if (!employee.name && !employee.email) {
-            alert('Name and Email is madatory.');
+        if (!employee.name || !employee.email || !this.state.isValidEmail || !this.state.isValidName) {
+            alert('Valid Name and Email is madatory.');
             return
         }
 
@@ -91,24 +120,41 @@ class EmployeeForm extends Component{
         
         return(
             <div className="employee-form ">
-                    <form >
-                        <div className="employee-form-group">
-                            <label>Name:</label>
+                <form >
+                    <div className="form-element-container">
+                        <label className = 'form-title-label'>
+                            Name:
+                        </label>
+                        <div className='form-input'>
                             <input value={this.state.employee.name} onChange={(e) => this.onValueChange(e)} name='name' type='text' placeholder="Name" />
+                            <br /><label className="error" hidden={this.state.isValidName}>Name is not valid. There should be at-lest 4 charactors.</label>
                         </div>
-                        <div className="employee-form-group">
-                            <label>Email:</label>
+                    </div>
+                    <div className="form-element-container">
+                        <label className = 'form-title-label'>
+                            Email:
+                            </label>
+                        <div className='form-input'>
                             <input value={this.state.employee.email} onChange={(e) => this.onValueChange(e)} name='email' type='text' placeholder="Email" />
+                            <br /><label className="error" hidden={this.state.isValidEmail}>Email is not valid.It should be abc@some.com format.</label>
                         </div>
-                        <div className="employee-form-group">
-                            <label>Skills:</label>
+                    </div>
+
+                    <div className="form-element-container">
+                        <label className = 'form-title-label'>
+                            Skills:
+                            </label>
+                        <div className='form-input'>
                             <textarea value={this.state.employee.skills} onChange={(e) => this.onValueChange(e)} name='skills' type='text' placeholder="Skills" />
                         </div>
-                        <div className="employee-form-group">
+                    </div>
+                    <div className="form-element-container">
+                        <div style={{margin:'auto'}}>
                             <input onClick={(e) => this.submitPress(e, this.state.employee)} type='submit' />
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
+            </div>
         )
     }
 }
